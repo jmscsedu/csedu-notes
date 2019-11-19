@@ -1,0 +1,55 @@
+\input{Includes/Preamble}
+
+\usepackage{fontawesome,subcaption,tikzsymbols}
+
+% Add some padding to all table cells.
+\setlength\extrarowheight{1pt}
+
+%\newcommand{\boxwidth}{\dimexpr\linewidth - 2pt}
+\newcommand{\boxwidth}{\linewidth}
+
+\definecolor{BoxHeaderBG}{RGB}{50, 50, 50}
+\definecolor{BoxHeaderText}{RGB}{220, 220, 220}
+
+\definecolor{QuestionHeaderBG}{RGB}{200, 200, 200}
+\definecolor{QuestionHeaderText}{RGB}{0, 0, 0}
+
+\newcommand{\BoxHeader}[2]{
+    \multicolumn{#1}{| >{\bfseries\footnotesize\cellcolor{BoxHeaderBG}\arraybackslash}l |}{
+        \textcolor{BoxHeaderText}{#2}
+    }
+}
+
+\newcounter{QuestionCounter}
+
+\newcommand{\Question}[2]{
+    \stepcounter{QuestionCounter}
+    \begin{tabularx}{\boxwidth}{|X|}
+        \hline
+        \cellcolor{QuestionHeaderBG}{\footnotesize\bfseries \textcolor{QuestionHeaderText}{Question \#\theQuestionCounter}} {\em \textcolor{QuestionHeaderText}{#1}} \\\hline
+        \ \\[#2]\hline
+    \end{tabularx}
+
+    \medskip
+}
+
+\newcommand{\FeelQuestion}{
+    \stepcounter{QuestionCounter}
+    \newcolumntype{F}{>{\centering\arraybackslash}X}
+    \begin{tabularx}{\boxwidth}{| F F F |}
+        \hline
+        \multicolumn{3}{| >{\hsize=\dimexpr3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X |}{
+            \cellcolor{QuestionHeaderBG}{\footnotesize\bfseries \textcolor{QuestionHeaderText}{Question \#\theQuestionCounter}} {\em \textcolor{QuestionHeaderText}{Select the option which best reflects how confident you are in applying what you have learend in this lesson.}}}\\\hline
+        & & \\[-8pt]
+        \Sadey[5][orange] & \Neutrey[5][gray] & \Smiley[5][cyan] \\\hline
+    \end{tabularx}
+
+    \medskip
+}
+
+\lhead{\tiny\texttt{U\UnitNumber: \UnitTitle\\L\LessonNumber: \LessonTitle}}
+\rhead{\tiny\texttt{[DPCS/\CourseLevel/U\UnitNumber/\LessonNumber]\\ }}
+
+\lfoot{\includegraphics[height=2cm,valign=c]{Files/logo}}
+\cfoot{\footnotesize \LessonTitle/DPCS/\CourseLevel/U\UnitNumber/L\LessonNumber/\thepage/\pageref{LastPage}\\Woodstock School/Mussoorie, Uttarakhand, India}
+\rfoot{\includegraphics[height=2cm,valign=c]{Files/ib-world-school-logo-1-colour}}
