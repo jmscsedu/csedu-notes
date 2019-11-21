@@ -23,10 +23,22 @@
 
     % Opening Exercise
     \section*{Before You Begin}
+    The following image shows the sound setup for an old MS-DOS game (``Nascar Racing'') using the DOSBox  emulator software.
 
+    \begin{figure}[h]
+        \centering
+        \includegraphics[height=7cm]{Extras/hardware_details}
+        \caption*{\tiny Image courtesy abandonia.com.}
+        \caption{A screenshot of ``Nascar Racing'' showing user manipulation of the sound card.}
+    \end{figure}
+
+    In particualr, note the level of detail about the system sound card the game requires in order to function properly.
 
     \vfill
 
+    \Question{Modern operating systems provide abstraction through device drivers and system libraries for interacting with common system hardware and peripherals (such as sound board, graphic cards, input devices, etc.). How does this abstraction layer impact the development of software on these systems?}{3.25cm}
+
+    \Question{The typical user of a computer system does not need to interact directly with his/her hardware; however, many games benefit from game-specific settings which impact performance and gameplay. How important is it for the user of a computer system to be able to manipulate some aspects of their hardware directly?}{3.25cm}
     \pagebreak
     
     % Definitions
@@ -82,6 +94,7 @@
             \caption*{\bfseries Microkernel}
             \includegraphics[width=6cm]{Extras/operating_system_microkernel}
         \end{subfigure}
+        \caption{Monolithic vs. Microkernel Architectures.}
     \end{figure}
     
     \subsubsection*{Notes}
@@ -93,20 +106,56 @@
     \pagebreak
     % Developing Technical Skills
     \section*{Developing Technical Skills}
-    \subsubsection*{Activity Title}
+    \subsubsection*{Kernel Development}
+    As an open-source project, the Linux kernel grants us the opportunity to examine the kernel development process. In particular, we can note that the kernel has to be created in such a way as to handle the wide variety of hardware platforms now available on the market.
+
+    \medskip
+    The following excerpt is taken from the changelogs for version 5.3.12 of the Linux kernel:
+
+    {\footnotesize
+    \begin{verbatim}
+    Author: Kai-Heng Feng <kai.heng.feng@canonical.com>
+    Date:   Wed Oct 16 18:38:16 2019 +0800
+    
+        x86/quirks: Disable HPET on Intel Coffe Lake platforms
+        
+        commit fc5db58539b49351e76f19817ed1102bf7c712d0 upstream.
+        
+        Some Coffee Lake platforms have a skewed HPET timer once the SoCs entered
+        PC10, which in consequence marks TSC as unstable because HPET is used as
+        watchdog clocksource for TSC.
+        
+        Harry Pan tried to work around it in the clocksource watchdog code [1]
+        thereby creating a circular dependency between HPET and TSC. This also
+        ignores the fact, that HPET is not only unsuitable as watchdog clocksource
+        on these systems, it becomes unusable in general.
+        
+        Disable HPET on affected platforms.
+    \end{verbatim}
+    }
+
+    Navigate to https://www.kernel.org and select the changelog link for the most current \emph{stable} release.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\boxwidth]{Extras/linux_kernel}
+        \caption{Screenshot of the Linux Kernel Archives.}
+    \end{figure}
+
+    Skim through the changelog to identify at least one change that has occurred within this release targetting a specific set of hardware or devices.
 
     \vfill
 
-    \Question{Third Question}{4cm}
+    \Question{Significant advances and changes in computer hardware frequently require updates to an operating system's kernel, particularly in monolithic systems such as Linux. Do you think operating system vendors should push for more standardization of computer hardware? Why or why not?}{4.5cm}
 
     \pagebreak
 
     % Reflections
     \section*{Reflections}
 
-    \Question{Significant advances and changes in computer hardware frequently require updates to an operating system's kernel, particularly in monolithic systems such as Linux. Do you think operating system vendors should push for more standardization of computer hardware? Why or why not?}{4cm}
+    \Question{Most Linux distributions pride themselves on being highly customizable, allowing users to change some of the smallest details of how their system runs. Briefly explain the advantage and disadvantage to this approach when compared to more restrictive systems, such as Apple's Mac OS X.}{4cm}
 
-    \Question{Windows Vista and newer require kernel-mode device drivers to be ``digitally signed'' by Microsoft. This process verifies a drivers use and authenticity. Why do you think Microsoft implemented this security measure?}{4cm}
+    \Question{Windows Vista and newer require kernel-mode device drivers to be ``digitally signed'' by Microsoft. This process verifies a driver's use and authenticity. Why do you think Microsoft implemented this security measure?}{4cm}
 
     \Question{Describe at least one new thing you have learned from this lesson. How might you apply this knowledge in the future?}{3.5cm}
 
